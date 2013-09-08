@@ -18,7 +18,7 @@ def evaluate(record):
         return False
     msg = record["MESSAGE"]
     if "authentication failure" in msg:
-        match = re.search(r"rhost=([0-9.:]+) ", msg) 
+        match = re.search(r"rhost=([0-9a-f.:]+)", msg) 
         if not match == None:
             try:
                 address = ipaddress.ip_address(match.group(1))
@@ -32,6 +32,8 @@ def evaluate(record):
                     return False
             except ValueError:
                 logging.error("Matched IP with invalid IP: '%s'" % msg)
+        else:
+            logging.error("Could not find rhost in '%s'" % msg)
     return True
 
 def feedJsonFromInto(url, handler):
