@@ -30,4 +30,4 @@ And for the IPv6 table:
 
 Examples can also be found in the `ip6tables.rules` file and `iptables.rules` file.
 
-
+You can optionally use the `journal2ban.service` systemd service definition to enable journal2ban at boot.
