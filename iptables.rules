@@ -1,0 +1,13 @@
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT 
+-A INPUT -m set --match-set blackfour src -j DROP
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 22 -m conntrack --ctstate NEW -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 80 -m conntrack --ctstate NEW -j ACCEPT
+
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT 
+
+COMMIT

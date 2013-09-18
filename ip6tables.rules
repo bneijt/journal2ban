@@ -1,0 +1,15 @@
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+
+-A INPUT -i lo -j ACCEPT 
+-A INPUT -m set --match-set blacksix src -j DROP
+-A INPUT -p icmpv6 -j ACCEPT 
+-A INPUT -m tcp -p tcp --dport 22 -m conntrack --ctstate NEW -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 80 -m conntrack --ctstate NEW -j ACCEPT
+
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+
+COMMIT

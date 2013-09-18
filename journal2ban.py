@@ -10,7 +10,7 @@ import urllib.error
 from subprocess import call
 from time import sleep
 
-#logging.getLogger().setLevel(logging.INFO)
+logging.getLogger().setLevel(logging.INFO)
 
 def evaluate(record):
     if not "MESSAGE" in record:
