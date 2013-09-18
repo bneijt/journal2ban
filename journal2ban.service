@@ -1,0 +1,6 @@
+[Unit]
+Description=Journal 2 ban
+Requires=systemd-journal-gatewayd.socket
+
+[Service]
+ExecStart=/usr/bin/journal2ban.py
