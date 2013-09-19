@@ -1,6 +1,10 @@
 [Unit]
 Description=Journal 2 ban
 Requires=systemd-journal-gatewayd.socket
+After=sshd.service
 
 [Service]
 ExecStart=/usr/bin/journal2ban.py
+
+[Install]
+WantedBy=multi-user.target
